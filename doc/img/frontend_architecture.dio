@@ -1,0 +1,100 @@
+<mxfile host="65bd71144e">
+    <diagram name="Frontend Architecture" id="frontend-arch">
+        <mxGraphModel dx="1068" dy="933" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="internet" value="Internet" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="40" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="igw" value="Internet Gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="160" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="vpc" value="VPC (10.0.0.0/8)&#xa;ap-northeast-1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;verticalAlign=top;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="280" width="840" height="480" as="geometry"/>
+                </mxCell>
+                <mxCell id="public_zone" value="Public Subnets" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="320" width="760" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="alb" value="Application Load Balancer&#xa;(Internal)&#xa;HTTPS:443" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="360" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="pub_subnet_1a" value="Public Subnet 1a&#xa;10.0.10.0/24" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="340" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="pub_subnet_1c" value="Public Subnet 1c&#xa;10.0.11.0/24" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="340" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="private_zone" value="Private Subnets" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;verticalAlign=top;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="520" width="760" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="s3" value="S3 Bucket&#xa;静的ウェブサイト&#xa;ホスティング" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="820" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="vpc_endpoint" value="VPC Endpoint&#xa;(S3 Gateway)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="780" y="600" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="prv_subnet_1a" value="Private Subnet 1a&#xa;10.0.20.0/24" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="540" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="prv_subnet_1c" value="Private Subnet 1c&#xa;10.0.21.0/24" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="540" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="route53" value="Route 53&#xa;Private Hosted Zone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="acm" value="ACM&#xa;SSL/TLS証明書" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="user" value="User&#xa;(Private Network)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="60" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn1" value="DNS Query" style="endArrow=classic;html=1;rounded=0;strokeColor=#666666;" parent="1" source="user" target="route53" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="80" y="130" as="sourcePoint"/>
+                        <mxPoint x="100" y="350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn2" value="HTTPS Request" style="endArrow=classic;html=1;rounded=0;strokeColor=#b85450;" parent="1" source="user" target="internet" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="80" y="90" as="sourcePoint"/>
+                        <mxPoint x="480" y="80" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn3" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#82b366;" parent="1" source="internet" target="igw" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="130" as="sourcePoint"/>
+                        <mxPoint x="540" y="150" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn4" value="HTTPS:443" style="endArrow=classic;html=1;rounded=0;strokeColor=#6c8ebf;" parent="1" source="igw" target="alb" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="230" as="sourcePoint"/>
+                        <mxPoint x="540" y="350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn5" value="HTTP Request" style="endArrow=classic;html=1;rounded=0;strokeColor=#d79b00;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="vpc_endpoint" target="s3" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="450" as="sourcePoint"/>
+                        <mxPoint x="650" y="570" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn6" value="VPC Endpoint経由" style="endArrow=classic;html=1;rounded=0;strokeColor=#9673a6;dashed=1;" parent="1" source="alb" target="vpc_endpoint" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="600" y="450" as="sourcePoint"/>
+                        <mxPoint x="800" y="590" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn7" value="SSL証明書" style="endArrow=classic;html=1;rounded=0;strokeColor=#666666;dashed=1;" parent="1" source="acm" target="alb" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="680" y="390" as="sourcePoint"/>
+                        <mxPoint x="650" y="390" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="security_label" value="セキュリティ設計&#xa;• S3: パブリックアクセスブロック&#xa;• ALB: Internal設定&#xa;• ALB→VPCエンドポイント→S3&#xa;• HTTPS通信のみ許可" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="480" width="200" height="100" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
